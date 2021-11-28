@@ -3,7 +3,7 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 
-public class PlayerPanel extends JPanel {
+public class PlayerPanel extends JPanel{
     static int WIDTH=200;
     static int HEIGHT=80;
 
@@ -21,7 +21,7 @@ public class PlayerPanel extends JPanel {
         this.player=player;
         this.setLayout(null);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setBounds(x,MyScreenPanel.HEIGHT-HEIGHT,WIDTH,HEIGHT);
+        this.setBounds(x,Game.HEIGHT-HEIGHT,WIDTH,HEIGHT);
         this.setBackground(Color.WHITE);
         initialise();
     }

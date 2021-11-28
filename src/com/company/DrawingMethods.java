@@ -4,55 +4,67 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 public class DrawingMethods {
-
-
-    static void spaceHandler(JLabelCell input, Graphics g){
-
-        switch (input.relativePos) {
-            case 0: drawGoStart(input,g,0); break;
-            case 1: downColorCells(input, new Color(100, 60, 30), g); break;
-            case 2: drawBox(input,g,0); break;
-            case 3: downColorCells(input, new Color(100, 60, 30), g); break;
-            case 4: drawTax(input,g,0); break;
-            case 5: drawTrain(input,g,0);  break;
-            case 6: downColorCells(input, Color.CYAN, g); break;
-            case 7: drawQuestionMark(input,g,0,Color.MAGENTA); break;
-            case 8: downColorCells(input, Color.CYAN, g); break;
-            case 9: downColorCells(input, Color.CYAN, g); break;
-            case 10: drawPrison(input,g,0); break;
-            case 11: rightColorCells(input, Color.MAGENTA, g); break;
-            case 12: drawLightBulb(input,g,1); break;
-            case 13: rightColorCells(input, Color.MAGENTA, g); break;
-            case 14: rightColorCells(input, Color.MAGENTA, g); break;
-            case 15: drawTrain(input,g,1); break;
-            case 16: rightColorCells(input, Color.ORANGE, g); break;
-            case 17: drawBox(input,g,1); break;
-            case 18: rightColorCells(input, Color.ORANGE, g); break;
-            case 19: rightColorCells(input, Color.ORANGE, g); break;
-            case 20: drawParking(input,g,1); break;
-            case 21: topColorCells(input, Color.RED, g); break;
-            case 22: drawQuestionMark(input,g,2,Color.BLUE); break;
-            case 23: topColorCells(input, Color.RED, g); break;
-            case 24: topColorCells(input, Color.RED, g); break;
-            case 25: drawTrain(input,g,2); break;
-            case 26: topColorCells(input, Color.YELLOW, g); break;
-            case 27: topColorCells(input, Color.YELLOW, g); break;
-            case 28: drawWater(input,g,2); break;
-            case 29: topColorCells(input, Color.YELLOW, g); break;
-            case 30: drawWarden(input,g,2); break;
-            case 31: leftColorCells(input, Color.GREEN, g); break;
-            case 32: leftColorCells(input, Color.GREEN, g); break;
-            case 33: drawBox(input,g,3); break;
-            case 34: leftColorCells(input, Color.GREEN, g); break;
-            case 35: drawTrain(input,g,3); break;
-            case 36: drawQuestionMark(input,g,3,Color.ORANGE); break;
-            case 37: leftColorCells(input, Color.BLUE, g); break;
-            case 38: drawTax(input,g,3); break;
-            case 39: leftColorCells(input, Color.BLUE, g); break;
+    static void markingHandler(Marking input, Graphics g){
+        switch (input.id){
+            case 0: drawMark(Color.RED,g); break;
+            case 1: drawMark(Color.YELLOW,g); break;
+            case 2: drawMark(Color.BLUE,g); break;
+            case 3: drawMark(Color.GREEN,g); break;
         }
     }
 
+    static void spaceHandler(Cell input, Graphics g){
 
+        switch (input.id) {
+            case 0: drawGoStart(g,0); break;
+            case 1: downColorCells(new Color(100, 60, 30), g); break;
+            case 2: drawBox(g,0); break;
+            case 3: downColorCells(new Color(100, 60, 30), g); break;
+            case 4: drawTax(g,0); break;
+            case 5: drawTrain(g,0);  break;
+            case 6: downColorCells(Color.CYAN, g); break;
+            case 7: drawQuestionMark(g,0,Color.MAGENTA); break;
+            case 8: downColorCells(Color.CYAN, g); break;
+            case 9: downColorCells(Color.CYAN, g); break;
+            case 10: drawPrison(g,0); break;
+            case 11: rightColorCells(Color.MAGENTA, g); break;
+            case 12: drawLightBulb(g,1); break;
+            case 13: rightColorCells(Color.MAGENTA, g); break;
+            case 14: rightColorCells(Color.MAGENTA, g); break;
+            case 15: drawTrain(g,1); break;
+            case 16: rightColorCells(Color.ORANGE, g); break;
+            case 17: drawBox(g,1); break;
+            case 18: rightColorCells(Color.ORANGE, g); break;
+            case 19: rightColorCells(Color.ORANGE, g); break;
+            case 20: drawParking(g,1); break;
+            case 21: topColorCells(Color.RED, g); break;
+            case 22: drawQuestionMark(g,2,Color.BLUE); break;
+            case 23: topColorCells(Color.RED, g); break;
+            case 24: topColorCells(Color.RED, g); break;
+            case 25: drawTrain(g,2); break;
+            case 26: topColorCells(Color.YELLOW, g); break;
+            case 27: topColorCells(Color.YELLOW, g); break;
+            case 28: drawWater(g,2); break;
+            case 29: topColorCells(Color.YELLOW, g); break;
+            case 30: drawWarden(g,2); break;
+            case 31: leftColorCells(Color.GREEN, g); break;
+            case 32: leftColorCells(Color.GREEN, g); break;
+            case 33: drawBox(g,3); break;
+            case 34: leftColorCells(Color.GREEN, g); break;
+            case 35: drawTrain(g,3); break;
+            case 36: drawQuestionMark(g,3,Color.ORANGE); break;
+            case 37: leftColorCells(Color.BLUE, g); break;
+            case 38: drawTax(g,3); break;
+            case 39: leftColorCells(Color.BLUE, g); break;
+        }
+    }
+    
+    static void drawMark(Color color,Graphics g){
+        g.setColor(color);
+        g.fillOval(0,0,Marking.SIZE,Marking.SIZE);
+        g.setColor(Color.BLACK);
+        g.drawOval(0,0,Marking.SIZE,Marking.SIZE);
+    }
 
     static void drawLines(Graphics g,int [][] points){
         g.setColor(Color.BLACK);
@@ -67,47 +79,43 @@ public class DrawingMethods {
         g.fillPolygon(points[0],points[1],points[0].length);
     }
 
-    static void rotateClockwise(JLabelCell input, int [][] points){
+    static void rotateClockwise(int [][] points){
         for (int i = 0; i < points[0].length; i++) {
             int temp=points[1][i];
             points[1][i]=points[0][i];
-            points[0][i]=input.sizeX-1-temp;
+            points[0][i]=Cell.SIZE-1-temp;
         }
     }
 
-    static Graphics rightColorCells(JLabelCell input, Color color, Graphics g){
+    static void rightColorCells(Color color, Graphics g){
         g.setColor(color);
-        g.fillRect(input.getWidth()/4*3,0,input.getWidth()/4,input.getHeight());
-        return g;
+        g.fillRect(Cell.SIZE/4*3,0,Cell.SIZE/4,Cell.SIZE);
     }
-    static Graphics leftColorCells(JLabelCell input, Color color, Graphics g){
+    static void leftColorCells(Color color, Graphics g){
         g.setColor(color);
-        g.fillRect(0,0,input.getWidth()/4,input.getHeight());
-        return g;
+        g.fillRect(0,0,Cell.SIZE/4,Cell.SIZE);
     }
-    static Graphics topColorCells(JLabelCell input, Color color, Graphics g){
+    static void topColorCells(Color color, Graphics g){
         g.setColor(color);
-        g.fillRect(0,input.getHeight()/4*3,input.getWidth(),input.getHeight()/4);
-        return g;
+        g.fillRect(0,Cell.SIZE/4*3,Cell.SIZE,Cell.SIZE/4);
     }
-    static Graphics downColorCells(JLabelCell input, Color color, Graphics g){
+    static void downColorCells(Color color, Graphics g){
         g.setColor(color);
-        g.fillRect(0,0,input.getWidth(),input.getHeight()/4);
-        return g;
+        g.fillRect(0,0,Cell.SIZE,Cell.SIZE/4);
     }
 
-    static void drawTrain(JLabelCell input, Graphics g, int rotateTimes){
+    static void drawTrain(Graphics g, int rotateTimes){
         int [][]points=trainPoints();
         for (int i = 0; i < rotateTimes; i++) {
-            rotateClockwise(input, points);
+            rotateClockwise(points);
         }
         fillShapes(g,points,Color.BLACK);
     }
-    static void drawBox(JLabelCell input, Graphics g, int rotateTimes){
+    static void drawBox(Graphics g, int rotateTimes){
         int [][][]points=boxPoints();
         for (int i = 0; i < rotateTimes; i++) {
             for (int [][]xy : points) {
-                rotateClockwise(input, xy);
+                rotateClockwise(xy);
             }
         }
         fillShapes(g,points[0],Color.WHITE);
@@ -119,7 +127,7 @@ public class DrawingMethods {
         fillShapes(g,points[6],Color.BLUE);
         drawShapes(g,points[0]);
     }
-    static void drawQuestionMark(JLabelCell input, Graphics g, int rotateTimes, Color color) {
+    static void drawQuestionMark(Graphics g, int rotateTimes, Color color) {
         Graphics2D g2 = (Graphics2D) g;
         Font font = new Font("Book Antiqua", Font.BOLD, 40);
         g2.setFont(font);
@@ -127,21 +135,21 @@ public class DrawingMethods {
         AffineTransform orig = g2.getTransform();
 
         FontMetrics fm = g2.getFontMetrics();
-        int x = ((input.sizeX- fm.stringWidth("?")) / 2);
-        int y = ((input.sizeY - fm.getHeight()) / 2) + fm.getAscent();
+        int x = ((Cell.SIZE- fm.stringWidth("?")) / 2);
+        int y = ((Cell.SIZE - fm.getHeight()) / 2) + fm.getAscent();
 
-        g2.rotate(Math.PI / 2 * rotateTimes, (int)(input.sizeY / 2),(int)(input.sizeX / 2));
+        g2.rotate(Math.PI / 2 * rotateTimes, (int)(Cell.SIZE / 2),(int)(Cell.SIZE / 2));
         g2.setColor(color);
         g2.drawString("?", x, y);
         System.out.println(x + "/" + y + "," + rotateTimes);
         g2.setTransform(orig);
 
     }
-    static void drawPrison(JLabelCell input, Graphics g, int rotateTimes){
+    static void drawPrison(Graphics g, int rotateTimes){
         int [][][]points=jailPoints();
         for (int i = 0; i < rotateTimes; i++) {
             for (int [][]xy : points) {
-                rotateClockwise(input, xy);
+                rotateClockwise(xy);
             }
         }
         fillShapes(g,points[0],Color.ORANGE);
@@ -155,11 +163,11 @@ public class DrawingMethods {
         drawLines(g,points[4]);
         drawLines(g,points[5]);
     }
-    static void drawLightBulb(JLabelCell input, Graphics g, int rotateTimes){
+    static void drawLightBulb(Graphics g, int rotateTimes){
         int [][][]points=lightBulbPoints();
         for (int i = 0; i < rotateTimes; i++) {
             for (int [][]xy : points) {
-                rotateClockwise(input, xy);
+                rotateClockwise(xy);
             }
         }
         fillShapes(g,points[0],new Color(100, 60, 30));
@@ -170,19 +178,19 @@ public class DrawingMethods {
         drawLines(g,points[3]);
         drawLines(g,points[4]);
     }
-    static void drawWater(JLabelCell input, Graphics g, int rotateTimes){
+    static void drawWater(Graphics g, int rotateTimes){
         int [][]points=waterPoints();
         for (int i = 0; i < rotateTimes; i++) {
-            rotateClockwise(input, points);
+            rotateClockwise(points);
         }
         fillShapes(g,points,Color.WHITE);
         drawShapes(g,points);
     }
-    static void drawWarden(JLabelCell input, Graphics g, int rotateTimes){
+    static void drawWarden(Graphics g, int rotateTimes){
         int [][][]points=wardenPoints();
         for (int i = 0; i < rotateTimes; i++) {
             for (int [][]xy : points) {
-                rotateClockwise(input, xy);
+                rotateClockwise(xy);
             }
         }
         fillShapes(g,points[0],Color.BLUE);
@@ -199,16 +207,16 @@ public class DrawingMethods {
         drawShapes(g,points[4]);
         drawShapes(g,points[5]);
     }
-    static void drawParking(JLabelCell input, Graphics g, int rotateTimes){
+    static void drawParking(Graphics g, int rotateTimes){
         int [][][]points=parkingPoints();
         for (int i = 0; i < rotateTimes; i++) {
             for (int [][]xy : points) {
-                rotateClockwise(input, xy);
+                rotateClockwise(xy);
             }
         }
         Graphics2D g2=(Graphics2D) g;
         AffineTransform orig = g2.getTransform();
-        g2.rotate(Math.PI / 4 , (int)(input.sizeY / 2),(int)(input.sizeX / 2));
+        g2.rotate(Math.PI / 4 , (int)(Cell.SIZE / 2),(int)(Cell.SIZE / 2));
         fillShapes(g,points[0],Color.RED);
         fillShapes(g,points[1],Color.DARK_GRAY);
         fillShapes(g,points[2],Color.DARK_GRAY);
@@ -225,11 +233,11 @@ public class DrawingMethods {
 
         g2.setTransform(orig);
     }
-    static void drawGoStart(JLabelCell input, Graphics g, int rotateTimes){
+    static void drawGoStart(Graphics g, int rotateTimes){
         int [][][]points=goStartPoints();
         for (int i = 0; i < rotateTimes; i++) {
             for (int [][]xy : points) {
-                rotateClockwise(input, xy);
+                rotateClockwise(xy);
             }
         }
 
@@ -237,18 +245,18 @@ public class DrawingMethods {
 
         Graphics2D g2=(Graphics2D) g;
         AffineTransform orig = g2.getTransform();
-        g2.rotate(-Math.PI / 4 , (int)(input.sizeY / 2),(int)(input.sizeX / 2));
+        g2.rotate(-Math.PI / 4 , (int)(Cell.SIZE / 2),(int)(Cell.SIZE / 2));
 
         fillShapes(g,points[1],Color.BLACK);
         fillShapes(g,points[2],Color.BLACK);
 
         g2.setTransform(orig);
     }
-    static void drawTax(JLabelCell input, Graphics g, int rotateTimes){
+    static void drawTax(Graphics g, int rotateTimes){
         int [][][]points=taxPoints();
         for (int i = 0; i < rotateTimes; i++) {
             for (int [][]xy : points) {
-                rotateClockwise(input, xy);
+                rotateClockwise(xy);
             }
         }
         fillShapes(g,points[0],Color.BLACK);

@@ -15,8 +15,8 @@ public class WatchScreen extends JPanel {
     public WatchScreen(){
         this.setLayout(null);
 
-        this.setBounds(MyScreenPanel.WIDTH,0,WIDTH,HEIGHT);
-        this.setBackground(Color.ORANGE);
+        this.setBounds(Game.WIDTH-WIDTH,0,WIDTH,HEIGHT);
+        this.setOpaque(false);
         initialise();
     }
 
@@ -26,7 +26,6 @@ public class WatchScreen extends JPanel {
         img.setLocation(WIDTH/2-img.getWidth()/2,0);
         img.setOpaque(true);
         img.setVisible(false);
-        img.setBackground(Color.PINK);
         this.add(img);
 
         price=new JLabel();
